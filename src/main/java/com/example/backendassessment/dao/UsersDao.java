@@ -28,6 +28,16 @@ public class UsersDao {
 		return tbl_users;
 	};
 	
+	// Retrieve specific user
+	public List<Tbl_Users> findById(int id) {
+		String sql = "SELECT u.idUser, u.userName, u.password, "
+				+ "u.status, u.createdDate, u.updateDate, "
+				+ "u.login, p.idProfile FROM tbl_users u "
+				+ "INNER JOIN tbl_profiles p ON u.idProfile = p.idProfile "
+				+ "WHERE u.idUser = " + id;
+		return jdbcTemplate.query(sql, rowMapper);
+	}
+	
 	// Retrieve all users
 	public List<Tbl_Users> findAll() {
 		String sql = "SELECT u.idUser, u.userName, u.password, "
@@ -40,15 +50,15 @@ public class UsersDao {
 	// Create user
 	public Integer save(Tbl_Users instance) {
 		String sql = "INSERT INTO tbl_users (userName, password, status, createdDate, updateDate, login, idProfile)"
-				+ "VALUES (?,?,?,?,?,?,?,?)";
+				+ "VALUES (?,?,?,?,?,?,?)";
 		return jdbcTemplate.update(sql, new Object[] { instance.getUserName(), instance.getPassword(), instance.getStatus(), instance.getCreatedDate(), instance.getUpdateDate(), instance.getLogin(), instance.getProfileId() });
 	}
 	
 	// Update user
 	public Integer update(Tbl_Users instance) {
 		String sql = "UPDATE tbl_users SET userName = ?, password=?, status=?, createdDate=?, updateDate=?, login=?, idProfile=?"
-				+ "WHERE idUSer = ?";
-		return jdbcTemplate.update(sql, new Object[] { instance.getUserName(), instance.getPassword(), instance.getStatus(), instance.getCreatedDate(), instance.getUpdateDate(), instance.getLogin(), instance.getProfileId() });
+				+ " WHERE idUser = ?";
+		return jdbcTemplate.update(sql, new Object[] { instance.getUserName(), instance.getPassword(), instance.getStatus(), instance.getCreatedDate(), instance.getUpdateDate(), instance.getLogin(), instance.getProfileId(), instance.getUserId() });
 	}
 	
 	// Delete user

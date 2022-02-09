@@ -2,9 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Update Profile</title>
 </head>
 <body>
+	<h1>Update Profile</h1>
 	<form th:action="@{/update-profile-action}" th:each="profiles: ${profiles}" method="POST">
 		<input type="hidden" th:value="${profiles.profileId}" id="profileId" name="profileId" required/>
 		<input type="text" th:value="${profiles.profile}" id="profile" name="profile" required/>

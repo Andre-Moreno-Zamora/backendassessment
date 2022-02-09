@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Update user</title>
+</head>
+<body>
+	<h1>Update User</h1>
+	<form th:action="@{/update-user-action}" method="POST" th:each="users: ${users}">
+		<input type="hidden" th:value="${users.userId}" id="userId" name="userId" required/>
+		<label for="userName">Username</label><br/>
+		<input type="text" id="userName" name="userName" th:value="${users.userName}" required/><br/>
+		<label for="password">Password</label><br/>
+		<input type="password" placeholder="Password" id="pass" name="password" th:value="${users.password}" required/><br/>
+		<label for="status">Status</label><br/>
+		<select id="status" name="status">
+			<option th:value="'up'" th:text="Up"></option>
+			<option th:value="'down'" th:text="Down"></option>
+		</select><br/>
+		<label for="login">Login</label><br/>
+		<select id="login" name="login">
+			<option th:value="'yes'" th:text="Yes"></option>
+			<option th:value="'no'" th:text="No"></option>
+		</select><br/>
+		<label for="createdDate">Created Date</label><br/>
+		<input type="date" id="createdDate" name="createdDate" th:value="${users.createdDate}"><br/>
+		<label for="createdDate">Created Date</label><br/>
+		<input type="date" id="updateDate" name="updateDate" th:value="${users.updateDate}"><br/>
+		<label for="profileId">Profile ID</label><br/>
+		<select id="profileId" name="profileId">
+			<option th:each="profiles: ${profiles}" th:value="${profiles.profileId}" th:text="${profiles.profile}"></option>
+		</select><br/>
+		<br/>
+		<input type="submit" value="Create">
+	</form>
+
+</body>
+</html>
