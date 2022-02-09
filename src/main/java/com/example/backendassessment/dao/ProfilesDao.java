@@ -31,16 +31,16 @@ public class ProfilesDao {
 	
 	// Create profile
 	public Integer save(Tbl_Profiles instance) {
-		String sql = "INSERT INTO tbl_profiles (idProfile, profile)"
-				+ "VALUES (?,?)";
-		return jdbcTemplate.update(sql, new Object[] { instance.getProfileId(), instance.getProfile() });
+		String sql = "INSERT INTO tbl_profiles (profile)"
+				+ "VALUES (?)";
+		return jdbcTemplate.update(sql, new Object[] { instance.getProfile() });
 	}
 	
 	// Update profile
 	public Integer update(Tbl_Profiles instance) {
-		String sql = "UPDATE tbl_profiles SET idProfile=?, profile=?"
+		String sql = "UPDATE tbl_profiles SET profile=?"
 				+ " WHERE idProfile = ?";
-		return jdbcTemplate.update(sql, new Object[] { instance.getProfileId(), instance.getProfile() });
+		return jdbcTemplate.update(sql, new Object[] { instance.getProfile() });
 	}
 	
 	// Delete profile
