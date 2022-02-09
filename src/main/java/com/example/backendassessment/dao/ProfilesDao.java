@@ -22,6 +22,14 @@ public class ProfilesDao {
 		return tbl_profiles;
 	};
 	
+	// Retrieve specific profile
+	public List<Tbl_Profiles> findById(int id) {
+		String sql = "SELECT idProfile, profile "
+				+ "FROM tbl_profiles "
+				+ "WHERE idProfile = " + id;
+		return jdbcTemplate.query(sql, rowMapper);
+	}
+	
 	// Retrieve all profiles
 	public List<Tbl_Profiles> findAll(){
 		String sql = "SELECT idProfile, profile "
@@ -40,7 +48,7 @@ public class ProfilesDao {
 	public Integer update(Tbl_Profiles instance) {
 		String sql = "UPDATE tbl_profiles SET profile=?"
 				+ " WHERE idProfile = ?";
-		return jdbcTemplate.update(sql, new Object[] { instance.getProfile() });
+		return jdbcTemplate.update(sql, new Object[] { instance.getProfile(), instance.getProfileId() });
 	}
 	
 	// Delete profile

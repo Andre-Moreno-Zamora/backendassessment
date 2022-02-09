@@ -11,6 +11,7 @@ create table tbl_users(
 	createdDate date not null,
 	updateDate date not null,
 	login enum('true', 'false') not null,
+	idProfile int not null,
 	foreign key(idProfile) references tbl_profiles(idProfile) on delete CASCADE
 );
 
